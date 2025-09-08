@@ -8638,7 +8638,7 @@ Instance.new("UICorner", frame).CornerRadius = UDim.new(0,12)
 
 local title = Instance.new("TextLabel",frame)
 title.Size = UDim2.new(1,0,0,30)
-title.Text = "✨ WataX Menu"
+title.Text = "WataX Menu"
 title.BackgroundColor3 = Color3.fromRGB(55,55,65)
 title.TextColor3 = Color3.fromRGB(255,255,255)
 title.Font = Enum.Font.GothamBold
@@ -8690,7 +8690,7 @@ end)
 local startCP = Instance.new("TextButton",frame)
 startCP.Size = UDim2.new(0.5,-7,0,40)
 startCP.Position = UDim2.new(0,5,0,40)
-startCP.Text = "▶ Start CP"
+startCP.Text = "Start CP"
 startCP.BackgroundColor3 = Color3.fromRGB(60,200,80)
 startCP.TextColor3 = Color3.fromRGB(255,255,255)
 startCP.Font = Enum.Font.GothamBold
@@ -8701,7 +8701,7 @@ startCP.MouseButton1Click:Connect(runRouteOnce)
 local stopBtn = Instance.new("TextButton",frame)
 stopBtn.Size = UDim2.new(0.5,-7,0,40)
 stopBtn.Position = UDim2.new(0.5,2,0,40)
-stopBtn.Text = "⏹ Stop"
+stopBtn.Text = "Stop"
 stopBtn.BackgroundColor3 = Color3.fromRGB(220,70,70)
 stopBtn.TextColor3 = Color3.fromRGB(255,255,255)
 stopBtn.Font = Enum.Font.GothamBold
@@ -8712,7 +8712,7 @@ stopBtn.MouseButton1Click:Connect(stopRoute)
 local startAll = Instance.new("TextButton",frame)
 startAll.Size = UDim2.new(1,-10,0,40)
 startAll.Position = UDim2.new(0,5,0,90)
-startAll.Text = "⏩ Start To End"
+startAll.Text = "Start To End"
 startAll.BackgroundColor3 = Color3.fromRGB(70,120,220)
 startAll.TextColor3 = Color3.fromRGB(255,255,255)
 startAll.Font = Enum.Font.GothamBold
