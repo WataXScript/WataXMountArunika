@@ -8542,7 +8542,7 @@ routes = {
     {"CP5->CP6", parseRoute(CP5to6_str)},
 }
 
--- (rest of your script continues unchanged)
+
 
 local function getNearestRoute()
     local nearestIdx, dist = 1, math.huge
@@ -8638,7 +8638,7 @@ Instance.new("UICorner", frame).CornerRadius = UDim.new(0,12)
 
 local title = Instance.new("TextLabel",frame)
 title.Size = UDim2.new(1,0,0,30)
-title.Text = "✨ WataX Hub"
+title.Text = "✨ WataX Menu"
 title.BackgroundColor3 = Color3.fromRGB(55,55,65)
 title.TextColor3 = Color3.fromRGB(255,255,255)
 title.Font = Enum.Font.GothamBold
