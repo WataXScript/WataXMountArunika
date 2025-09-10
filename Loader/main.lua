@@ -1,4 +1,3 @@
-
 -- Loader Key UI
 
 local Players = game:GetService("Players")
@@ -8,11 +7,9 @@ local player = Players.LocalPlayer
 
 local saveFile = "WataX_Key_Mnk.txt"
 
-
 local function saveKey(k)
     writefile(saveFile, k)
 end
-
 
 local function loadKey()
     if isfile(saveFile) then
@@ -22,7 +19,6 @@ local function loadKey()
     end
 end
 
-
 local function isKeyValid(k)
     local url = "https://raw.githubusercontent.com/WataXScript/WataXMountArunika/main/Loader/eldl/"..k
     local success, data = pcall(function()
@@ -31,11 +27,9 @@ local function isKeyValid(k)
     return success and data ~= nil and data ~= ""
 end
 
-
 local gui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
 gui.Name = "WataXLoader"
 gui.ResetOnSpawn = false
-
 
 local mainFrame = Instance.new("Frame", gui)
 mainFrame.Size = UDim2.new(0, 400, 0, 250)
@@ -45,14 +39,12 @@ mainFrame.BorderSizePixel = 0
 local corner = Instance.new("UICorner", mainFrame)
 corner.CornerRadius = UDim.new(0, 15)
 
-
 local gradient = Instance.new("UIGradient", mainFrame)
 gradient.Color = ColorSequence.new{
     ColorSequenceKeypoint.new(0, Color3.fromRGB(70, 130, 180)),
     ColorSequenceKeypoint.new(1, Color3.fromRGB(123, 104, 238))
 }
 gradient.Rotation = 45
-
 
 local titleBar = Instance.new("Frame", mainFrame)
 titleBar.Size = UDim2.new(1, 0, 0, 35)
@@ -70,7 +62,6 @@ local titleStroke = Instance.new("UIStroke", title)
 titleStroke.Thickness = 1.2
 titleStroke.Color = Color3.fromRGB(0, 0, 0)
 
-
 local closeBtn = Instance.new("TextButton", titleBar)
 closeBtn.Size = UDim2.new(0, 30, 0, 30)
 closeBtn.Position = UDim2.new(0, 5, 0.5, -15)
@@ -85,7 +76,6 @@ closeBtn.MouseButton1Click:Connect(function()
     gui:Destroy()
 end)
 
-
 local minBtn = Instance.new("TextButton", titleBar)
 minBtn.Size = UDim2.new(0, 30, 0, 30)
 minBtn.Position = UDim2.new(1, -35, 0.5, -15)
@@ -96,7 +86,6 @@ minBtn.BackgroundColor3 = Color3.fromRGB(50, 150, 200)
 minBtn.TextColor3 = Color3.fromRGB(255,255,255)
 local minCorner = Instance.new("UICorner", minBtn)
 minCorner.CornerRadius = UDim.new(0, 6)
-
 
 local iconBtn = Instance.new("TextButton", gui)
 iconBtn.Size = UDim2.new(0, 90, 0, 40)
@@ -113,7 +102,6 @@ iconCorner.CornerRadius = UDim.new(0.5, 0)
 local iconStroke = Instance.new("UIStroke", iconBtn)
 iconStroke.Thickness = 1.5
 iconStroke.Color = Color3.fromRGB(255, 255, 255)
-
 
 local dragging = false
 local dragInput, dragStart, startPos
@@ -147,7 +135,6 @@ UIS.InputChanged:Connect(function(input)
     end
 end)
 
-
 minBtn.MouseButton1Click:Connect(function()
     mainFrame.Visible = false
     iconBtn.Visible = true
@@ -156,7 +143,6 @@ iconBtn.MouseButton1Click:Connect(function()
     iconBtn.Visible = false
     mainFrame.Visible = true
 end)
-
 
 local keyBox = Instance.new("TextBox", mainFrame)
 keyBox.Size = UDim2.new(0.8, 0, 0, 40)
@@ -170,7 +156,6 @@ keyBox.BackgroundColor3 = Color3.fromRGB(240, 240, 240)
 local keyCorner = Instance.new("UICorner", keyBox)
 keyCorner.CornerRadius = UDim.new(0, 8)
 
-
 local submitBtn = Instance.new("TextButton", mainFrame)
 submitBtn.Size = UDim2.new(0.5, 0, 0, 35)
 submitBtn.Position = UDim2.new(0.25, 0, 0.55, 0)
@@ -181,7 +166,6 @@ submitBtn.BackgroundColor3 = Color3.fromRGB(60, 180, 100)
 submitBtn.TextColor3 = Color3.fromRGB(255,255,255)
 local submitCorner = Instance.new("UICorner", submitBtn)
 submitCorner.CornerRadius = UDim.new(0, 10)
-
 
 local buyKeyLabel = Instance.new("TextLabel", mainFrame)
 buyKeyLabel.Size = UDim2.new(1, 0, 0, 30)
@@ -194,7 +178,6 @@ buyKeyLabel.BackgroundTransparency = 1
 local buyStroke = Instance.new("UIStroke", buyKeyLabel)
 buyStroke.Thickness = 1
 buyStroke.Color = Color3.fromRGB(0,0,0)
-
 
 local discordBtn = Instance.new("TextButton", mainFrame)
 discordBtn.Size = UDim2.new(0, 100, 0, 30)
@@ -210,18 +193,20 @@ discordBtn.MouseButton1Click:Connect(function()
     setclipboard("https://discord.gg/tfNqRQsqHK")
 end)
 
--- ==============================
+local function loadScripts()
+    print("[Loader] Loading ...")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/WataXScript/WataXMountArunika/main/Loader/mainmap991.lua"))()
 
--- ==============================
-
+    print("[Loader] Loading anim.lua ...")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/WataXScript/WataXMountArunika/main/Loader/anim.lua"))()
+end
 
 local lastKey = loadKey()
 if lastKey and isKeyValid(lastKey) then
     print("Auto login berhasil, key valid:", lastKey)
     mainFrame.Visible = false
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/WataXScript/WataXMountArunika/main/Loader/mainmap991.lua"))()
+    loadScripts()
 end
-
 
 submitBtn.MouseButton1Click:Connect(function()
     local inputKey = keyBox.Text
@@ -229,7 +214,7 @@ submitBtn.MouseButton1Click:Connect(function()
         saveKey(inputKey)
         print("Key benar:", inputKey)
         mainFrame.Visible = false
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/WataXScript/WataXMountArunika/main/Loader/mainmap991.lua"))()
+        loadScripts()
     else
         print("Key salah:", inputKey)
     end
