@@ -1,4 +1,3 @@
--- WataX Replay New Map (patched nearest frame per route)
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local hrp = nil
@@ -17,7 +16,7 @@ local playbackRate = 1.0
 local isRunning = false
 local routes = {}
 
--- Embedded replay frames
+
 local CP0to1 = {
         CFrame.new(-833.4124145507812,57.94404220581055,-444.3289794921875) * CFrame.Angles(-3.26533022843023e-09,-2.378157138824463,2.994968051339697e-09),
         CFrame.new(-833.4124145507812,57.94404220581055,-444.3289794921875) * CFrame.Angles(-3.26533022843023e-09,-2.378157138824463,2.994968051339697e-09),
@@ -10207,7 +10206,7 @@ local function runAllRoutes()
         if not isRunning then break end
         local frames = routes[r][2]
         if #frames < 2 then continue end
-        -- PATCH: always use nearest frame index, not just for the first route
+        
         local startIdx = getNearestFrameIndex(frames)
         for i = startIdx, #frames - 1 do
             if not isRunning then break end
@@ -10224,7 +10223,7 @@ local function stopRoute()
     isRunning = false
 end
 
--- Simple UI (buttons only)
+
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "WataXReplay"
 screenGui.ResetOnSpawn = false
@@ -10281,8 +10280,7 @@ startAll.TextScaled = true
 Instance.new("UICorner", startAll).CornerRadius = UDim.new(0,10)
 startAll.MouseButton1Click:Connect(runAllRoutes)
 
--- Extra UI: Close, Minimize/Bubble, Speed Controls, Discord
--- Close button (top-left)
+
 local closeBtn = Instance.new("TextButton", frame)
 closeBtn.Size = UDim2.new(0,30,0,30)
 closeBtn.Position = UDim2.new(0,0,0,0)
@@ -10296,7 +10294,7 @@ closeBtn.MouseButton1Click:Connect(function()
     if screenGui then screenGui:Destroy() end
 end)
 
--- Minimize / Bubble
+
 local miniBtn = Instance.new("TextButton", frame)
 miniBtn.Size = UDim2.new(0,30,0,30)
 miniBtn.Position = UDim2.new(1,-30,0,0)
@@ -10329,7 +10327,7 @@ bubbleBtn.MouseButton1Click:Connect(function()
     bubbleBtn.Visible = false
 end)
 
--- Discord button (bottom-left)
+
 local discordBtn = Instance.new("TextButton", frame)
 discordBtn.Size = UDim2.new(0,100,0,30)
 discordBtn.AnchorPoint = Vector2.new(0,1)
@@ -10341,7 +10339,7 @@ discordBtn.Font = Enum.Font.GothamBold
 discordBtn.TextScaled = true
 Instance.new("UICorner", discordBtn).CornerRadius = UDim.new(0,8)
 
--- Bottom bar: Discord + Speed row
+
 discordBtn.Size = UDim2.new(0,100,0,30)
 discordBtn.AnchorPoint = Vector2.new(0,1)
 discordBtn.Position = UDim2.new(0,5,1,-5)
